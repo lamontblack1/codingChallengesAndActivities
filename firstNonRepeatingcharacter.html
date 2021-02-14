@@ -26,6 +26,27 @@
        console.log(firstNonRepeatingCharacter("the quick brown fox jumps over the calm kitten quietly"))
        console.log(firstNonRepeatingCharacter("this hat is the greatest"))
 
+    // class solution whcih I hand copied,did not copy and paste
+        function firstNoRepeat(str) {
+            let charCount = {};
+            for (let i = 0; i < str.length; i++) {
+                if (charCount[char]) {
+                    charCount[char]++
+                }
+                else {
+                    charCount[char] = 1;
+                }
+                
+            }
+
+            for (var j in charCount) {    // FOR LOOP for properties of objects
+                if (charCount[j]==1) {
+                    return j; //shouldn't it be charCount[j] ?
+                }
+                
+            }
+        }
+
     </script>
 </body>
 </html>
