@@ -17,7 +17,7 @@
           <!-- The scope attribute specifies that this is a header for a column -->
           <th scope="col">Movie Name</th>
           <th scope="col">Year</th>
-          <th scope="col">Actors</th>
+          <th scope="col">Actors or Poster</th>
         </tr>
       </thead>
       <tbody>
@@ -41,7 +41,7 @@
 
         $.ajax({
           url: queryURL,
-          method: "GET"
+          method: "GET"  //Put, Delete, Post methods. these 4 methods are all we are going to need to know
         }).then(function(response) {
     
         let rowToAdd = createNewRow(response)
@@ -49,18 +49,22 @@
         });
 
     }
-
+    
     function createNewRow(obj) {
        // Create and save a reference to new empty table row
       let newRow = $("<tr>")
       // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
-        let col1 = $("<td>")
+      // let titleTd = $("<td>").text(obj.Title);    instructor solution
+        // let yearTd = $("<td>").text(obj.Year);
+        // let actorsTd = $("<td>").text(obj.Actors);
+      let col1 = $("<td>")
           col1.text(obj.Title)
         let col2 = $("<td>")
           col2.text(obj.Year)
         let col3 = $("<td>")
-          col3.text(obj.Actors)
+          col3.html("<img src='" + obj.Poster + "'>")
       // Append the td elements to the new table row
+      // newRow.append(titleTD, yearTd, actorsTd);   instructor solution
       newRow.append(col1)
       newRow.append(col2)
       newRow.append(col3)

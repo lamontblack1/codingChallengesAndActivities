@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy API</title>
+</head>
+<style>
+  img {
+    border-style: solid;
+    margin: 10px;
+    border-width: 2px;
+  }
+</style>
+
+<body>
+  <div id="container">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Example queryURL for Giphy API
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dSe8JxZC5c32HRcUeWDIT7n5R8PYUmTF&q="+ prompt("What subject Gifs would you like to see?") +"&rating=g";
+
+    let myDiv = $("#container")
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response)
+      console.log(response.data.length);
+      let ary = response.data
+      for (let i = 0; i < ary.length; i++) {
+        const element = ary[i];
+        console.log(element.id);
+
+          let newGif = $("<img src='https://media.giphy.com/media/"+ element.id +"/giphy.gif'>")
+          myDiv.append(newGif)
+        // myDiv.append("<iframe src='" + element.embed_url + "'></iframe>")
+        
+      }
+    });
+  </script>
+
+</body>
+
+</html>
