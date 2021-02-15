@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var sample = function(){
+  let a = b = 3;
+}
+sample();
+console.log(typeof a)
+console.log(typeof b)
+console.log("Is a defined?", typeof a !== "undefined");
+console.log("Is b defined?", typeof b !== "undefined");
+// is it because a is declared in the function and thus destroyed when function is done running
+// b is not declared in the function but implicitly declared so it becomes global?
+    </script>
+</body>
+</html>
