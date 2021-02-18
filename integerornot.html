@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function integerOrNot(input) {
+            if (typeof input === "number") {
+                if (Math.floor(input) === input) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }    
+            else {
+                return false
+            } 
+         }
+
+         console.log("input: " + "'7'  " + "Output: " + integerOrNot("7"))
+         console.log("input: " + "7  " + "Output: " + integerOrNot(7))
+         console.log("input: " + "4.3  " + "Output: " + integerOrNot(4.3))
+         
+
+    </script>
+</body>
+</html>
