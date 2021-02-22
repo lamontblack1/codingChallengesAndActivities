@@ -10,13 +10,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+
+document.cookie = "user=John"; // update only cookie named 'user'
+alert(document.cookie); // show all cookies
+
         let name = "gifname"
         let url = "jworg"
 
         for (let i = 0; i < 5; i++) {
             let strName = name + i
             let strUrl = url+ i
-            document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";            let x = document.cookie
+            document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";           
+             let x = document.cookie
             console.log(x)
         }
 
