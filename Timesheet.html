@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="jumbotron">
+                <div class="jumbotron text-center">
                     <h1>Employee Data Management</h1>
                     <h3>A comprehensive Directory of Employee Billable Hours</h3>
                 </div>
@@ -38,12 +38,12 @@
                         </thead>
                         <tbody id="tableBody">
                             <!-- <tr>
-                                <th>as</th>
-                                <th>as</th>
-                            <th>sd</th>
-                            <th>sd</th>
-                            <th>fg</th>
-                            <th>fg</th>
+                                <td>as</td>
+                                <td>as</td>
+                            <td>sd</td>
+                            <td>sd</td>
+                            <td>fg</td>
+                            <td>fg</td>
                         </tr> -->
                          
                     </tbody>
@@ -112,7 +112,7 @@
 
 
 $("#submit").on("click",function(event) {
-    event.preventDefault()
+    // event.preventDefault()
     
 
 
@@ -133,13 +133,14 @@ $("#submit").on("click",function(event) {
     // });
 })
 
-db.ref("/school").orderByChild("dateAdded").limitToLast(5).on("child_added", function(snap) {
+db.ref("/school").orderByChild("dateAdded").on("child_added", function(snap) {
     let newRow = $("<tr>")
-    let strEmpName = $("<th>").append(snap.val().employeeName)
-    let strRole = $("<th>").append(snap.val().role)
+    let strEmpName = $("<td>").append(snap.val().employeeName)
+    let strRole = $("<td>").append(snap.val().role)
     let startDate = moment(snap.val().startDate)
-    let dtDate = $("<th>").append(startDate.format("MM/DD/YYYY")) 
-    let intRate = $("<th>").append(snap.val().monthlyRate)
+    // let empStartPretty = moment.unix(empStart).format("MM/DD/YYYY")
+    let dtDate = $("<td>").append(startDate.format("MM/DD/YYYY")) 
+    let intRate = $("<td>").append(snap.val().monthlyRate)
         // let today = new Date()
         // console.log(today)
         let firstDate = moment(snap.val().startDate)
@@ -150,11 +151,18 @@ db.ref("/school").orderByChild("dateAdded").limitToLast(5).on("child_added", fun
         
         
         let monthsPassed = moment().diff(startDate, "months")
-    intMonthsWorked = $("<th>").append(monthsPassed)
-    let intTotalBilled = $("<th>").append((snap.val().monthlyRate) * monthsPassed) 
+        //moment().diff(moment(empStart,"X"),"months")
+    intMonthsWorked = $("<td>").append(monthsPassed)
+    let intTotalBilled = $("<td>").append((snap.val().monthlyRate) * monthsPassed) 
 
-    newRow.append(strEmpName,strRole, dtDate, intMonthsWorked ,intRate,intTotalBilled)
-    $("#tableBody").append(newRow)
+        newRow.append(strEmpName,strRole, dtDate, intMonthsWorked ,intRate,intTotalBilled)
+    //     newRow = $("<tr>").append(
+    //         $("<td>").text(empName),
+    //             etc
+    //     )
+
+
+    $("#tableBody").prepend(newRow)
 }, function(errObject) {
     console.log(errObject)
 })
