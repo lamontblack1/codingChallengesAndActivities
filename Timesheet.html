@@ -134,6 +134,8 @@ $("#submit").on("click",function(event) {
 })
 
 db.ref("/school").orderByChild("dateAdded").on("child_added", function(snap) {
+        console.log(snap)
+        console.log("--------------------")
     let newRow = $("<tr>")
     let strEmpName = $("<td>").append(snap.val().employeeName)
     let strRole = $("<td>").append(snap.val().role)
