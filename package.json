@@ -16,7 +16,5 @@
     "url": "https://github.com/lamontblack1/codingChallengesAndActivities/issues"
   },
   "homepage": "https://github.com/lamontblack1/codingChallengesAndActivities#readme",
-  "dependencies": {
-    "pryjs": "^1.0.3"
-  }
+  "dependencies": {}
 }
