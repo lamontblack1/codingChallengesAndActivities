@@ -1,0 +1,22 @@
+{
+  "name": "codingchallengesandactivities",
+  "version": "1.0.0",
+  "description": "These are small challenges and activities posed during class. this repository is an opportunity to commit my coding efforts regularly.",
+  "main": "createChar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamontblack1/codingChallengesAndActivities.git"
+  },
+  "author": "lamont",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lamontblack1/codingChallengesAndActivities/issues"
+  },
+  "homepage": "https://github.com/lamontblack1/codingChallengesAndActivities#readme",
+  "dependencies": {
+    "pryjs": "^1.0.3"
+  }
+}

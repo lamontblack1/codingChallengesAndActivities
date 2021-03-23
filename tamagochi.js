@@ -1,9 +1,10 @@
+// const pry = require("pryjs")
+
 function DigitalPal(hungry, sleepy, bored, age) {
     this.hungry = hungry;
     this.sleepy = sleepy;
     this.bored = bored;
     this.age = age;
-   
     this.feed = function () {
         if (this.hungry === true) {
             console.log("That was Yummy!");
@@ -83,7 +84,7 @@ tamagochi.cat.buyNewFurniture = function () {
     console.log("Are you sure about that?");
 
 }
-
+// eval(pry.it);
 let pet = process.argv[2];
 let action = process.argv[3];
 
