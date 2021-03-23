@@ -5,7 +5,7 @@ function DigitalPal(hungry, sleepy, bored, age) {
     this.age = age;
    
     this.feed = function () {
-        if (this.hungry) {
+        if (this.hungry === true) {
             console.log("That was Yummy!");
             this.hungry = false;
             this.sleepy = true;
@@ -15,7 +15,7 @@ function DigitalPal(hungry, sleepy, bored, age) {
         }
     };
     this.sleep = function () {
-        if (this.sleepy) {
+        if (this.sleepy === true) {
             console.log("ZZZZZzzzzz.");
             this.sleepy = false;
             this.bored = true;
@@ -26,7 +26,7 @@ function DigitalPal(hungry, sleepy, bored, age) {
         }
     };
     this.play = function () {
-        if (this.bored) {
+        if (this.bored === true) {
             console.log("Yay! Let's play!");
             this.bored = false;
             this.hungry = true;
@@ -42,20 +42,22 @@ function DigitalPal(hungry, sleepy, bored, age) {
 
 };
 
-let dog = new DigitalPal(true, false, false, 23)
-dog.outside = false;
-dog.bark = function () {
+let tamagochi = {};
+
+tamagochi.dog = new DigitalPal(true, false, false, 23)
+tamagochi.dog.outside = false;
+tamagochi.dog.bark = function () {
     console.log("Woof! Woof!");
 };
-dog.goOutside = function () {
-    if (!this.outside) {
+tamagochi.dog.goOutside = function () {
+    if (!this.outside === true) {
         console.log("Yay! I love the outdoors!");
         this.outside = true;
         this.bark();
     }
 };
-dog.goInside = function () {
-    if (this.outside) {
+tamagochi.dog.goInside = function () {
+    if (this.outside === true) {
         console.log("Do we have to? Fine...");
         this.outside = false;
         this.bark();
@@ -63,10 +65,10 @@ dog.goInside = function () {
     else { console.log("I am already inside.") };
 };
 
-let cat = new DigitalPal(true, false, false, 4)
-cat.houseCondition = 100;
-cat.meow = function () { console.log("Meow! Meow!") };
-cat.destroyFurniture = function () {
+tamagochi.cat = new DigitalPal(true, false, false, 4)
+tamagochi.cat.houseCondition = 100;
+tamagochi.cat.meow = function () { console.log("Meow! Meow!") };
+tamagochi.cat.destroyFurniture = function () {
     if (this.houseCondition > 0) {
         this.houseCondition -= 10;
         console.log("MUAHAHAHAHA! TAKE THAT FURNITURE!");
@@ -76,8 +78,13 @@ cat.destroyFurniture = function () {
     
 };
 
-cat.buyNewFurniture = function () {
+tamagochi.cat.buyNewFurniture = function () {
     this.houseCondition += 50;
     console.log("Are you sure about that?");
 
 }
+
+let pet = process.argv[2];
+let action = process.argv[3];
+
+tamagochi[pet][action]()
