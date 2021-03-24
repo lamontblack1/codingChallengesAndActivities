@@ -1,13 +1,3 @@
-// Start out by creating a constructor function called "Player" with the following properties and methods...
-
-//   * `name`: Property which contains the player's name
-//   * `position`: Property which holds the player's position
-//   * `offense`: Property which is a value between 1 and 10 to show how good this player is on offense
-//   * `defense`: Property which is a value between 1 and 10 to show how good this player is on defense
-//   * `goodGame`: Method which increases either the player's offense or defense property based upon a coinflip.
-//   * `badGame`: Method which decreases either the player's offense or defense property based upon a coinflip.
-//   * `printStats`: Method which prints all of the player's properties to the screen
-
 
 let inquirer = require("inquirer");
 
@@ -18,7 +8,7 @@ function Player(name, position, offense, defense, goodGame, badGame, printStats)
     this.offense = offense;
     this.defense = defense;
     this.goodGame = function () {
-        let rnd = Math.floor(Math.random());
+        let rnd = Math.random();
         if (rnd > .5) {
             if (this.offense < 10) {this.offense++}
         } else {
@@ -26,7 +16,7 @@ function Player(name, position, offense, defense, goodGame, badGame, printStats)
         }
     };
     this.badGame = function () {
-        let rnd = Math.floor(Math.random());
+        let rnd = Math.random();
         if (rnd > .5) {
             if (this.offense > 1) {this.offense--}
         } else {
@@ -45,6 +35,8 @@ function Player(name, position, offense, defense, goodGame, badGame, printStats)
 let count = 0;
 let playerArray = [];
 let subArray = [];
+let score = 0
+let playCount = 0
 
 let askQuestion = function() {
   // if statement to ensure that our questions are only asked five times
@@ -74,11 +66,12 @@ let askQuestion = function() {
     ]).then(function(answers) {
       // initializes the letiable newPlayer to be a programmer object which will
       // take in all of the user's answers to the questions above
-      let newPlayer = new Player(
-        answers.name,
-        answers.position,
-        answers.offense,
-        answers.defense);
+        let newPlayer = new Player(
+            answers.name,
+            answers.position,
+            parseInt(answers.offense),
+            parseInt(answers.defense)
+        );
       // pushes newPlayer object into our array
         if (count === 0) {
              subArray.push(newPlayer)
@@ -97,15 +90,22 @@ let askQuestion = function() {
       playerArray[x].printStats();
       }
       subArray[0].printStats()
+      playGame()
   }
 };
 
 // call askQuestion to run our code
 askQuestion();
-let score = 0
+
 function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let rnd1 = Math.floor(Math.random() * 20);
+    if (playCount < 5) {
+        inquirer.prompt([
+            {
+                name: "answer",
+                message: "hit enter to play "
+            }
+        ]).then(function (answers) {
+                    let rnd1 = Math.floor(Math.random() * 20);
         let rnd2 = Math.floor(Math.random() * 20);
         let teamOffense = 0
         let teamDefense = 0
@@ -115,7 +115,7 @@ function playGame() {
             teamDefense += element.defense
         };
         if (rnd1 < teamOffense) {
-            console.log("Number rolled: " + rnd1 + ", Team Offense: " + teamOffense + ". +1!")
+            console.log(`Number rolled: ${rnd1} Team Offense is: ${teamOffense}. +1!!`);
             score++
         };
         if (rnd2 > teamDefense) {
@@ -137,39 +137,46 @@ function playGame() {
                 subArray.shift()
             }
         });
-    };
-
-    if (score > 0) {
-        for (let i = 0; i < playerArray.length; i++) {
-            const element = playerArray[i];
-            element.goodGame;
+    
+        if (score > 0) {
+            for (let i = 0; i < playerArray.length; i++) {
+                const element = playerArray[i];
+                element.goodGame;
+            };
+            subArray[0].goodGame()
+        } else if (score < 0) {
+            for (let i = 0; i < playerArray.length; i++) {
+                const element = playerArray[i];
+                element.badGame;
+            };
+            subArray[0].badGame
         };
-        subArray[0].goodGame()
-    } else if (score < 0) {
-        for (let i = 0; i < playerArray.length; i++) {
-            const element = playerArray[i];
-            element.badGame;
+            console.log("Team score: " + score)
+            playCount++
+            
+
+        for (let x = 0; x < playerArray.length; x++) {
+        playerArray[x].printStats();
         };
-        subArray[0].badGame
-    };
-    console.log("Team score: " + score)
-
-    for (let x = 0; x < playerArray.length; x++) {
-      playerArray[x].printStats();
-    };
-    subArray[0].printStats()
-
-     inquirer.prompt([
-            {
-                name: "answer",
-                message: "Would you like play again? (y/n) "
-            }
-        ]).then(function (answers) {
-            if (answers.answer = "y") {
-                score = 0
-                playGame()
-            }
+        subArray[0].printStats()
+            
+             inquirer.prompt([
+                {
+                    name: "answer",
+                    message: "Would you like play again? (y/n) "
+                }
+            ]).then(function (answers) {
+                if (answers.answer = "y") {
+                    score = 0
+                    playGame()
+                }
+            });
+            
         });
-};
 
-playGame();
+
+        
+    }
+    
+}
+

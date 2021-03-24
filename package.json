@@ -16,5 +16,7 @@
     "url": "https://github.com/lamontblack1/codingChallengesAndActivities/issues"
   },
   "homepage": "https://github.com/lamontblack1/codingChallengesAndActivities#readme",
-  "dependencies": {}
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }
