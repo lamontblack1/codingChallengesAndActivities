@@ -2,7 +2,7 @@
 let inquirer = require("inquirer");
 
 // constructor function used to create programmer objects
-function Player(name, position, offense, defense, goodGame, badGame, printStats) {
+function Player(name, position, offense, defense) {
   this.name = name;
   this.position = position;
     this.offense = offense;
@@ -31,7 +31,7 @@ function Player(name, position, offense, defense, goodGame, badGame, printStats)
         
     };
 };
-// letiable we will use to count how many times our questions have been asked
+// variable we will use to count how many times our questions have been asked
 let count = 0;
 let playerArray = [];
 let subArray = [];
@@ -105,7 +105,7 @@ function playGame() {
                 message: "hit enter to play "
             }
         ]).then(function (answers) {
-                    let rnd1 = Math.floor(Math.random() * 20);
+        let rnd1 = Math.floor(Math.random() * 20);
         let rnd2 = Math.floor(Math.random() * 20);
         let teamOffense = 0
         let teamDefense = 0
@@ -124,19 +124,19 @@ function playGame() {
         };
         console.log("Your score: " + score);
 
-        inquirer.prompt([
-            {
-                name: "answer",
-                message: "Would you like to substitute in a sub player? (y/n) "
-            }
-        ]).then(function (answers) {
-            if (answers.answer = "y") {
-                subArray.push(playerArray[0])
-                playerArray.shift()
-                playerArray.push(subArray[0])
-                subArray.shift()
-            }
-        });
+                inquirer.prompt([
+                    {
+                        name: "answer",
+                        message: "Would you like to substitute in a sub player? (y/n) "
+                    }
+                ]).then(function (answers) {
+                    if (answers.answer = "y") {
+                        subArray.push(playerArray[0])
+                        playerArray.shift()
+                        playerArray.push(subArray[0])
+                        subArray.shift()
+                    }
+                });
     
         if (score > 0) {
             for (let i = 0; i < playerArray.length; i++) {
