@@ -54,6 +54,7 @@ function startPrompts() {
     });
     
 };
+ 
 
 function getArtist() {
     inquirer.prompt([
@@ -63,11 +64,7 @@ function getArtist() {
     message: "Enter the artist name or first or last name",
   }
     ]).then(function(answers) {
-      // initializes the variable newProgrammer to be a programmer object which will
-      // take in all of the user's answers to the questions above
-        // count++;
         readLike("top5000", "artist", answers.artist)
-      // run the askquestion function again so as to either end the loop or ask the questions again
     });
 };
 
@@ -79,11 +76,7 @@ function getSong() {
     message: "Enter part or all of the song title",
   }
     ]).then(function(answers) {
-      // initializes the variable newProgrammer to be a programmer object which will
-      // take in all of the user's answers to the questions above
-        // count++;
         readLike("top5000", "song_title", answers.song)
-      // run the askquestion function again so as to either end the loop or ask the questions again
     });
 };
 
@@ -143,18 +136,16 @@ function getRange() {
     });
 };
 
+
 function readLike(tableName, field, criteria) {
         connection.query(
             "SELECT * FROM " + tableName + " WHERE " + field +" LIKE '%" + criteria + "%'",
             function (err, res) {
-
                 if (err) throw err;
-                // Log all results of the SELECT statement
-                // console.log(res);
+
                 printToConsole(res);
                 startPrompts()
              });   
-   
 };
 
 function printToConsole(result) {
