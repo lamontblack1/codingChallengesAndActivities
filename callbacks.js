@@ -16,8 +16,12 @@ let runifTrue = function(bool, func) {
 // of executing the function argument with the value.
 // This isn't as hard as it sounds!
 let returnFunc = function (funcAdd, someString) {
-    let returnFunc = funcAdd(someString)
-    return returnFunc
+  return function () {
+    return funcAdd(someString)
+  }
+
+    // let returnFunc = funcAdd(someString)
+    // return returnFunc
 }
 // Use fs.writeFile to log a message to a file called
 // log.txt. Are yo using callbacks anywhere? Where?
