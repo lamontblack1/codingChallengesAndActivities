@@ -10,31 +10,31 @@ function handleRequest(req, res) {
 
     switch (path) {
 
-    case "/food"
-    return fs.readFile(_dirname + "/favoriteFoods.html", function (err, data) {
+    case "/food":
+    return fs.readFile(__dirname + "/favoriteFoods.html", function (err, data) {
         if (err) throw err;
-        res.writeHead(200, { Content-Type: "text/html"});
+        res.writeHead(200, { "Content-Type": "text/html"});
         res.end(data);
     });
     
-    case "/movies"
-    return fs.readFile(_dirname + "favoriteMovies.html", function (err, data) {
+    case "/movies":
+    return fs.readFile(__dirname + "/favoriteMovies.html", function (err, data) {
         if (err) throw err;
-        res.writeHead(200, { Content-Type: "text/html"});
+        res.writeHead(200, { "Content-Type": "text/html"});
         res.end(data);  
     });
         
-    case "/flowers"
-    return fs.readFile(_dirname + "favoriteFlowers.html", function (err, data) {
+    case "/flowers":
+    return fs.readFile(__dirname + "/favoriteFlowers.html", function (err, data) {
         if (err) throw err;
-        res.writeHead(200, { Content-Type: "text/html"});
+        res.writeHead(200, { "Content-Type": "text/html"});
         res.end(data);  
     });
 
     default:
-        return fs.readFile(_dirname + "index.html", function (err, data) {
+        return fs.readFile(__dirname + "/index.html", function (err, data) {
             if (err) throw err;
-            res.writeHead(200, { Content-Type: "text/html"});
+            res.writeHead(200, { "Content-Type": "text/html"});
             res.end(data);  
         });
 
