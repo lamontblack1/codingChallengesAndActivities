@@ -20,13 +20,16 @@ module.exports = function(app) {
   });
 
   // Add sequelize code to get a specific book and return it as JSON
-  app.get("/api/:book", function(req, res) {
+  app.get("/api/:book", function (req, res) {
+    console.log("book name: " + req.params.book)
     Book.findOne({
        where: {
         title: req.params.book
       }
     }).then(function (result) {
-      return res.json(result);
+      let toReturn = []
+      toReturn.push(result)
+      return res.json(toReturn);
     })
   });
 
