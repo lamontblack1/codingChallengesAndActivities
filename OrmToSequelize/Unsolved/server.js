@@ -27,6 +27,7 @@ require("./routes/api-routes.js")(app);
 
 
 //SYNC THE DATABASE BEFORE SERVER STARTS
+//force: true - each Model will run DROP TABLE IF EXISTS, before it tries to create its own table
 db.sequelize.sync().then(function () {
   // Starting our Express app
   // =============================================================
