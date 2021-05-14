@@ -33,7 +33,11 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Post.belongsTo(db.Author);
+db.Post.belongsTo(db.Author, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
 db.Author.hasMany(db.Post);
 
 module.exports = db;
