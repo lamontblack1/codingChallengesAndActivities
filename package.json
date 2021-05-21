@@ -19,5 +19,8 @@
   "dependencies": {
     "inquirer": "^8.0.0",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "mocha": "^8.4.0"
   }
 }
