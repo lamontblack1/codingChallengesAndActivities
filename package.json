@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/lamontblack1/codingChallengesAndActivities#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "inquirer": "^8.0.0",
+    "mongoose": "^5.12.12",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
