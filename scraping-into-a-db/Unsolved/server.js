@@ -16,10 +16,15 @@ var cheerio = require("cheerio");
 // Initialize Express
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Static directory
+app.use(express.static("public"));
+
 // Database configuration
 var databaseUrl = "scraper";
 var collections = [];
-item = "";
 
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
@@ -66,43 +71,21 @@ app.get("/all", function (req, res) {
       "https://accessibleweeklyad.publix.com/PublixAccessibility/BrowseByListing/ByCategory/?ListingSort=8&StoreID=2628706&CategoryID=5232540"
     )
     .then(function (response) {
-      console.log(response.data);
+      let item = "";
+      let items = [];
       // Load the HTML into cheerio and save it to a variable
       // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
       var $ = cheerio.load(response.data);
+      //each bogo is in h2, with class ellipsis_text. next make sure
       $("h2.ellipsis_text").each(function (i, element) {
         if (item !== $(element).text()) {
           item = $(element).text();
-          collections.push({
+          items.push({
             item: item
           });
         }
       });
-      let html =
-        '<html><div class="container">' +
-        '<div class="row">' +
-        '<div class="col-2">' +
-        '<div class="card">' +
-        '<div class="card-body" id="bogo-list">' +
-        '<h5 class="card-title">Publix BOGOs</h5>' +
-        '<h6 class="card-subtitle mb-2 text-muted">Village Plaze</h6>';
-      for (let i = 0; i < collections.length; i++) {
-        const element = collections[i].item;
-        html += "<p class=card-text'>" + element + "</p>";
-      }
-      html += "</div></div></div></div></div>";
-      res.send(html);
-      //put it into the database
-      // db.scraped.insert(collections, function (error, found) {
-      //   // Log any errors if the server encounters one
-      //   if (error) {
-      //     console.log(error);
-      //   }
-      //   // Otherwise, send the result of this query to the browser
-      //   else {
-      //     res.json(collections);
-      //   }
-      // });
+      res.json(items);
     });
 });
 
